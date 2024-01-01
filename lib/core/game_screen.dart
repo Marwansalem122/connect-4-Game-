@@ -1,10 +1,13 @@
+import 'package:connect_4/core/web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../components/game_board.dart';
 import '../components/player_turn_widget.dart';
 import '../utils/game_logic.dart';
+
 class GameScreen extends StatefulWidget {
-  GameScreen({super.key});
+  const GameScreen({super.key});
 
   @override
   State<GameScreen> createState() => _GameScreenState();
@@ -31,7 +34,8 @@ class _GameScreenState extends State<GameScreen> {
         IconButton(
           tooltip: 'How to play?',
           onPressed: () {
-            launchUrlString('https://en.wikipedia.org/wiki/Connect_Four');
+             Navigator.of(context).push(MaterialPageRoute(builder: (context)=> WebView(url: "https://en.wikipedia.org/wiki/Connect_Four")));
+          
           },
           icon: const Icon(
             Icons.info_outline_rounded,
@@ -92,7 +96,7 @@ class _GameScreenState extends State<GameScreen> {
                     backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
-                    title: Text("Do You Really Want To Restart ?"),
+                    title:const Text("Do You Really Want To Restart ?"),
                     actions: [
                       TextButton(
                           onPressed: (() {
@@ -103,7 +107,7 @@ class _GameScreenState extends State<GameScreen> {
                               context: context,
                             );
                           }),
-                          child: Text("Yes"))
+                          child:const Text("Yes"))
                     ],
                   );
                 });
@@ -129,5 +133,13 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  void launchUrlString(String s) {}
+//   void launchUrlString(String url)async {
+//     //final Uri uri = Uri.parse(url);
+
+//  if (await canLaunch(url)) {
+//       await launch(url);
+//     } else {
+//       print('Could not launch $url');
+//     }
+//   }
 }

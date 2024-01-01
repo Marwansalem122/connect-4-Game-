@@ -1,7 +1,6 @@
 
 
 // ignore: must_be_immutable
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,6 +8,7 @@ import '../models/coin.dart';
 import '../utils/game_logic.dart';
 import 'game_coin_widget.dart';
 
+// ignore: must_be_immutable
 class GameBoard extends StatefulWidget {
   GameBoard(
       {super.key, required this.playerTurnKey, required this.gameBoardKey});
@@ -47,6 +47,7 @@ class GameBoardState extends State<GameBoard> {
                     //stop the game if the game has ended
                     if (result != Result.play) {
                       setState(() {});
+                      // ignore: use_build_context_synchronously
                       showDialog(
                         context: context,
                         builder: (context) {
